@@ -102,9 +102,9 @@ public class TrMigrationConfig {
     public RepositoryItemReader<Orders> trOrdersReader() {
         return new RepositoryItemReaderBuilder<Orders>()
                 .name("trOrdersReader")
-                .repository(ordersRepository)
+                .repository(ordersRepository) // ordersRepositroy DI
                 .methodName("findAll")
-                .pageSize(5) // 보통 chunkSize 와 동일하게 입력
+                .pageSize(CHUNK_SIZE) // 보통 chunkSize 와 동일하게 입력
                 .arguments(List.of())
                 .sorts(Collections.singletonMap("id", Sort.Direction.ASC))
                 .build();
