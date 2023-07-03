@@ -1,4 +1,4 @@
-package com.batch.springbatchtutorial.job.DbDataReadWrite;
+package com.batch.springbatchtutorial.job.dbDataReadWrite;
 
 import com.batch.springbatchtutorial.core.domain.accounts.Accounts;
 import com.batch.springbatchtutorial.core.domain.accounts.AccountsRepository;
@@ -16,9 +16,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.data.RepositoryItemReader;
-import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.data.builder.RepositoryItemReaderBuilder;
-import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Sort;
@@ -35,7 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrMigrationConfig {
 
-    private static final int CHUNK_SIZE = 5;
+    private final int CHUNK_SIZE = 5;
     private final OrdersRepository ordersRepository;
     private final AccountsRepository accountsRepository;
     private final JobBuilderFactory jobBuilderFactory;
