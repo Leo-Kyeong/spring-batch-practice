@@ -27,7 +27,7 @@ public class MultipleStepJobConfig {
     public Job multipleStepJob(Step multipleStep1, Step multipleStep2, Step multipleStep3) {
         return jobBuilderFactory.get("multipleStepJob")
                 .incrementer(new RunIdIncrementer())
-                .start(multipleStep1)
+                .start(multipleStep1) // Step 순차 등록
                 .next(multipleStep2)
                 .next(multipleStep3)
                 .build();
@@ -58,7 +58,7 @@ public class MultipleStepJobConfig {
                             .getJobExecution()
                             .getExecutionContext();
 
-                    executionContext.put("someKey", "hello!!");
+                    executionContext.put("someKey", "hello!!"); // Context에 데이터를 담아서 Step 끼리 공유할 수 있다.
 
                     return RepeatStatus.FINISHED;
                 })
@@ -78,7 +78,7 @@ public class MultipleStepJobConfig {
                             .getJobExecution()
                             .getExecutionContext();
 
-                    System.out.println("executionContext.get(\"someKey\") = " + executionContext.get("someKey"));
+                    System.out.println(executionContext.get("someKey")); //  Context에서 이전 스텝에서 저장한 데이터를 가져올 수 있다.
 
                     return RepeatStatus.FINISHED;
                 })
