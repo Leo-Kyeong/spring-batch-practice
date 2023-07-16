@@ -1,7 +1,16 @@
+# default
 spring:
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
   batch:
     job:
-      names: ${job.name:NONE} # Job? ??? ? Job ??? ????? ??? ?? ??
+      names: ${job.name:NONE}
     jdbc:
       initialize-schema: always
   datasource:
@@ -11,3 +20,11 @@ spring:
     password: 1234
   jpa:
     show-sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    database: h2
